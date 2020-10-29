@@ -27,7 +27,23 @@ print("waiting for client")
 # 	print(data)
 # 	time.sleep(2)
 
+# while True:
+# 	client, addr = server.accept()
+# 	client.send(bytes(json.dumps(data), "utf-8"))
+# 	client.close()
+
+go = True
+stage = 1
+
 while True:
 	client, addr = server.accept()
-	client.send(bytes(json.dumps(data), "utf-8"))
-	client.close()
+	while go:
+		update(stage)
+		client.send(bytes(json.dumps(data), "utf-8"))
+		time.sleep(15)
+		if stage >= 4:
+			stage = 1
+		else:
+			stage += 1
+	else:
+		client.close()

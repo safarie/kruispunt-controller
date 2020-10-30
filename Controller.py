@@ -20,8 +20,8 @@ while True:
 	client, addr = server.accept()
 	while go:
 		updateLight(stage)
-		size = len(str(data))
-		client.send(bytes(str(size) + ":", "utf-8") + bytes(json.dumps(data), "utf-8"))
+		size = len(str(data).replace(" ",""))
+		client.send(bytes(str(size) + ":", "utf-8") + bytes(json.dumps(data).replace(" ",""), "utf-8"))
 		time.sleep(15)
 		if stage >= 4:
 			stage = 1

@@ -22,8 +22,8 @@ while True:
 		updateLight(stage)
 		size = len(str(data).replace(" ",""))
 		client.send(bytes(str(size) + ":", "utf-8") + bytes(json.dumps(data).replace(" ",""), "utf-8"))
-		time.sleep(15)
-		if stage >= 4:
+		time.sleep(8)
+		if stage >= 5:
 			stage = 1
 		else:
 			stage += 1

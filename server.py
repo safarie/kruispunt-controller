@@ -76,12 +76,12 @@ def UpdateLight(nr):
 		data["F1-2"] = 0
 		data["V1-1"] = 1
 		data["V1-2"] = 1
-		data["V1-3"] = 0
-		data["V1-4"] = 0
-		data["A2-1"] = 1
-		data["A2-2"] = 1
-		data["A2-3"] = 1
-		data["A2-4"] = 1
+		data["V1-3"] = 1
+		data["V1-4"] = 1
+		data["A2-1"] = 0
+		data["A2-2"] = 0
+		data["A2-3"] = 0
+		data["A2-4"] = 0
 		data["F2-1"] = 0
 		data["F2-2"] = 0
 		data["V2-1"] = 0
@@ -335,7 +335,7 @@ while True:
 
 	client.send(bytes(json.dumps(data), "utf-8"))
 
-	if (state < 5) :
+	if (state < 4) :
 	  state += 1
 	else :
 		state = 1

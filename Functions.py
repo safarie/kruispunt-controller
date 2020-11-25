@@ -52,6 +52,7 @@ data = {
 }
 
 def updateLight(nr):
+    #Red
 	if nr == 1:
 		data["A1-1"] = 0
 		data["A1-2"] = 0
@@ -104,6 +105,7 @@ def updateLight(nr):
 		data["A6-3"] = 1
 		data["A6-4"] = 1
 
+	#Indigo
 	elif nr == 2:
 		data["A1-1"] = 0
 		data["A1-2"] = 0
@@ -156,6 +158,7 @@ def updateLight(nr):
 		data["A6-3"] = 0
 		data["A6-4"] = 0
 
+	#Green
 	elif nr == 3:
 		data["A1-1"] = 1
 		data["A1-2"] = 1
@@ -208,6 +211,7 @@ def updateLight(nr):
 		data["A6-3"] = 0
 		data["A6-4"] = 0
 
+	#Purple
 	elif nr == 4:
 		data["A1-1"] = 0
 		data["A1-2"] = 0
@@ -260,6 +264,7 @@ def updateLight(nr):
 		data["A6-3"] = 0
 		data["A6-4"] = 0
 
+	#Orange
 	elif nr == 5:
 		data["A1-1"] = 1
 		data["A1-2"] = 1
@@ -312,6 +317,7 @@ def updateLight(nr):
 		data["A6-3"] = 0
 		data["A6-4"] = 0
 
+	#set everything to red
 	else:
 		data["A1-1"] = 0
 		data["A1-2"] = 0

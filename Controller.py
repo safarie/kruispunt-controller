@@ -34,6 +34,6 @@ while True:
 		else:
 			stage = 1
 		
-		time.sleep(5)
+		time.sleep(getTime(stage % 2))
 	else:
 		client.close()

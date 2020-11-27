@@ -335,3 +335,9 @@ def updateLightL(nr):
 		data["A6-2"] = 0
 		data["A6-3"] = 1
 		data["A6-4"] = 1
+
+def getTime(int):
+	if int == 1:
+		return 5
+	else:
+		return 10

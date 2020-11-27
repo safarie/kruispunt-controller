@@ -19,14 +19,21 @@ stage = 1
 while True:
 	client, addr = server.accept()
 	while go:
-		updateLightR(stage)
-		updateLightL(stage)
 		size = len(str(data).replace(" ",""))
 		client.send(bytes(str(size) + ":", "utf-8") + bytes(json.dumps(data).replace(" ",""), "utf-8"))
-		time.sleep(8)
-		if stage >= 5:
-			stage = 2
+		
+		if stage % 2 == 1:
+			updateLightR(1)
+			updateLightL(1)
 		else:
+			updateLightR(stage)
+			updateLightL(stage)
+		
+		if stage < 8:
 			stage += 1
+		else:
+			stage = 1
+		
+		time.sleep(5)
 	else:
 		client.close()

@@ -14,7 +14,7 @@ server.listen(5)
 print("waiting for client")
 
 go = True
-stage = 1
+stage = 2
 
 while True:
 	client, addr = server.accept()

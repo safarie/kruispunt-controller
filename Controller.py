@@ -1,6 +1,5 @@
 import socket
-import json
-import time
+import threading
 
 from Functions import *
 
@@ -13,27 +12,30 @@ server.listen(5)
 
 print("waiting for client")
 
-go = True
-stage = 1
-
 while True:
 	client, addr = server.accept()
-	while go:
+	recv_thread = threading.Thread(target=receiving, args=(client,))
+	recv_thread.start()
+	
+	while True:		
+		if not getSmart():
+			if getStage('r') < 14:
+				s = getStage('r') + 1
+				setStage(s, s)
+			else:
+				setStage(1, 1)
+		else:
+			SmartLights()
+		
+		update()
+		
 		size = len(str(data).replace(" ",""))
 		client.send(bytes(str(size) + ":", "utf-8") + bytes(json.dumps(data).replace(" ",""), "utf-8"))
 		
-		if stage % 2 == 1:
-			updateLightR(1)
-			updateLightL(1)
-		else:
-			updateLightR(stage)
-			updateLightL(stage)
+		time.sleep(getTime())
 		
-		if stage < 8:
-			stage += 1
-		else:
-			stage = 1
-		
-		time.sleep(getTime(stage % 2))
 	else:
 		client.close()
+			
+server.close()
+print("server closed")

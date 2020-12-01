@@ -5,8 +5,8 @@ smart = False
 rStage = 0
 lStage = 0
 recvData = ''
-rSetPrio = [0,0,0,0,0,0,0]
-lSetPrio = [0,0,0,0,0,0,0]
+rSetPrio = [0,0,0,0]
+lSetPrio = [0,0,0,0]
 data = {
 	"A1-1": 0,
 	"A1-2": 0,
@@ -93,6 +93,62 @@ def updateLightR(nr):
 	elif nr == 2:		
 		data["A1-1"] = 1
 		data["A1-2"] = 1
+		data["A1-3"] = 1
+		data["B1-1"] = 0
+		data["B1-2"] = 0
+		data["F1-1"] = 0
+		data["F1-2"] = 0
+		data["V1-1"] = 0
+		data["V1-2"] = 0
+		data["V1-3"] = 0
+		data["V1-4"] = 0
+		data["A2-1"] = 1
+		data["A2-2"] = 1
+		data["A2-3"] = 0
+		data["A2-4"] = 0
+		data["F2-1"] = 0
+		data["F2-2"] = 0
+		data["V2-1"] = 0
+		data["V2-2"] = 0
+		data["V2-3"] = 0
+		data["V2-4"] = 0
+		data["A3-1"] = 0
+		data["A3-2"] = 0
+		data["A3-3"] = 0
+		data["A3-4"] = 0
+
+#Right-Red
+	elif nr == 4:
+		data["A1-1"] = 0
+		data["A1-2"] = 0
+		data["A1-3"] = 0
+		data["B1-1"] = 0
+		data["B1-2"] = 0
+		data["F1-1"] = 1
+		data["F1-2"] = 1
+		data["V1-1"] = 1
+		data["V1-2"] = 1
+		data["V1-3"] = 1
+		data["V1-4"] = 1
+		data["A2-1"] = 0
+		data["A2-2"] = 0
+		data["A2-3"] = 1
+		data["A2-4"] = 1
+		data["F2-1"] = 0
+		data["F2-2"] = 0
+		data["V2-1"] = 0
+		data["V2-2"] = 0
+		data["V2-3"] = 0
+		data["V2-4"] = 0
+		data["A3-1"] = 0
+		data["A3-2"] = 0
+		data["A3-3"] = 1
+		data["A3-4"] = 1
+
+#Right-Green
+	elif nr == 6:		
+		data["A1-1"] = 1
+		data["A1-2"] = 1
 		data["A1-3"] = 0
 		data["B1-1"] = 0
 		data["B1-2"] = 0
@@ -108,127 +164,17 @@ def updateLightR(nr):
 		data["A2-4"] = 0
 		data["F2-1"] = 1
 		data["F2-2"] = 1
-		data["V2-1"] = 0
-		data["V2-2"] = 0
-		data["V2-3"] = 0
-		data["V2-4"] = 0
-		data["A3-1"] = 1
-		data["A3-2"] = 1
-		data["A3-3"] = 0
-		data["A3-4"] = 0
-
-#Right-Red
-	elif nr == 4:
-		data["A1-1"] = 0
-		data["A1-2"] = 0
-		data["A1-3"] = 0
-		data["B1-1"] = 0
-		data["B1-2"] = 0
-		data["F1-1"] = 0
-		data["F1-2"] = 0
-		data["V1-1"] = 0
-		data["V1-2"] = 0
-		data["V1-3"] = 0
-		data["V1-4"] = 0
-		data["A2-1"] = 0
-		data["A2-2"] = 0
-		data["A2-3"] = 0
-		data["A2-4"] = 0
-		data["F2-1"] = 0
-		data["F2-2"] = 0
 		data["V2-1"] = 1
 		data["V2-2"] = 1
-		data["V2-3"] = 0
-		data["V2-4"] = 0
-		data["A3-1"] = 1
-		data["A3-2"] = 1
-		data["A3-3"] = 1
-		data["A3-4"] = 1
-
-#Right-Green
-	elif nr == 6:		
-		data["A1-1"] = 0
-		data["A1-2"] = 0
-		data["A1-3"] = 0
-		data["B1-1"] = 0
-		data["B1-2"] = 0
-		data["F1-1"] = 0
-		data["F1-2"] = 0
-		data["V1-1"] = 0
-		data["V1-2"] = 0
-		data["V1-3"] = 0
-		data["V1-4"] = 0
-		data["A2-1"] = 1
-		data["A2-2"] = 1
-		data["A2-3"] = 1
-		data["A2-4"] = 1
-		data["F2-1"] = 0
-		data["F2-2"] = 0
-		data["V2-1"] = 0
-		data["V2-2"] = 0
 		data["V2-3"] = 1
 		data["V2-4"] = 1
-		data["A3-1"] = 0
-		data["A3-2"] = 0
+		data["A3-1"] = 1
+		data["A3-2"] = 1
 		data["A3-3"] = 0
 		data["A3-4"] = 0
 
 #Right-Blue
 	elif nr == 8:		
-		data["A1-1"] = 0
-		data["A1-2"] = 0
-		data["A1-3"] = 0
-		data["B1-1"] = 0
-		data["B1-2"] = 0
-		data["F1-1"] = 1
-		data["F1-2"] = 1
-		data["V1-1"] = 0
-		data["V1-2"] = 0
-		data["V1-3"] = 0
-		data["V1-4"] = 0
-		data["A2-1"] = 0
-		data["A2-2"] = 0
-		data["A2-3"] = 1
-		data["A2-4"] = 1
-		data["F2-1"] = 0
-		data["F2-2"] = 0
-		data["V2-1"] = 0
-		data["V2-2"] = 0
-		data["V2-3"] = 0
-		data["V2-4"] = 0
-		data["A3-1"] = 0
-		data["A3-2"] = 0
-		data["A3-3"] = 1
-		data["A3-4"] = 1
-		
-	elif nr == 10:
-		data["A1-1"] = 0
-		data["A1-2"] = 0
-		data["A1-3"] = 0
-		data["B1-1"] = 0
-		data["B1-2"] = 0
-		data["F1-1"] = 0
-		data["F1-2"] = 0
-		data["V1-1"] = 1
-		data["V1-2"] = 1
-		data["V1-3"] = 0
-		data["V1-4"] = 0
-		data["A2-1"] = 0
-		data["A2-2"] = 0
-		data["A2-3"] = 0
-		data["A2-4"] = 0
-		data["F2-1"] = 0
-		data["F2-2"] = 0
-		data["V2-1"] = 0
-		data["V2-2"] = 0
-		data["V2-3"] = 0
-		data["V2-4"] = 0
-		data["A3-1"] = 1
-		data["A3-2"] = 1
-		data["A3-3"] = 1
-		data["A3-4"] = 1
-		
-	elif nr == 12:
 		data["A1-1"] = 0
 		data["A1-2"] = 0
 		data["A1-3"] = 0
@@ -240,33 +186,6 @@ def updateLightR(nr):
 		data["V1-2"] = 0
 		data["V1-3"] = 0
 		data["V1-4"] = 0
-		data["A2-1"] = 1
-		data["A2-2"] = 1
-		data["A2-3"] = 0
-		data["A2-4"] = 0
-		data["F2-1"] = 0
-		data["F2-2"] = 0
-		data["V2-1"] = 0
-		data["V2-2"] = 0
-		data["V2-3"] = 0
-		data["V2-4"] = 0
-		data["A3-1"] = 0
-		data["A3-2"] = 0
-		data["A3-3"] = 0
-		data["A3-4"] = 0
-		
-	elif nr == 14:
-		data["A1-1"] = 1
-		data["A1-2"] = 1
-		data["A1-3"] = 1
-		data["B1-1"] = 0
-		data["B1-2"] = 0
-		data["F1-1"] = 0
-		data["F1-2"] = 0
-		data["V1-1"] = 0
-		data["V1-2"] = 0
-		data["V1-3"] = 1
-		data["V1-4"] = 1
 		data["A2-1"] = 0
 		data["A2-2"] = 0
 		data["A2-3"] = 0
@@ -313,6 +232,62 @@ def updateLightL(nr):
 
 #Left-Purple
 	if nr == 2:		
+		data["A4-1"] = 1
+		data["A4-2"] = 1
+		data["A4-3"] = 1
+		data["A4-4"] = 1
+		data["B4-1"] = 0
+		data["F4-1"] = 0
+		data["F4-2"] = 0
+		data["V4-1"] = 0
+		data["V4-2"] = 0
+		data["V4-3"] = 0
+		data["V4-4"] = 0
+		data["A5-1"] = 0
+		data["A5-2"] = 0
+		data["A5-3"] = 1
+		data["A5-4"] = 1
+		data["F5-1"] = 0
+		data["F5-2"] = 0
+		data["V5-1"] = 0
+		data["V5-2"] = 0
+		data["V5-3"] = 0
+		data["V5-4"] = 0
+		data["A6-1"] = 0
+		data["A6-2"] = 0
+		data["A6-3"] = 0
+		data["A6-4"] = 0
+
+#Left-Red
+	elif nr == 4:
+		data["A4-1"] = 0
+		data["A4-2"] = 0
+		data["A4-3"] = 0
+		data["A4-4"] = 0
+		data["B4-1"] = 0
+		data["F4-1"] = 1
+		data["F4-2"] = 1
+		data["V4-1"] = 1
+		data["V4-2"] = 1
+		data["V4-3"] = 1
+		data["V4-4"] = 1
+		data["A5-1"] = 1
+		data["A5-2"] = 1
+		data["A5-3"] = 0
+		data["A5-4"] = 0
+		data["F5-1"] = 0
+		data["F5-2"] = 0
+		data["V5-1"] = 0
+		data["V5-2"] = 0
+		data["V5-3"] = 0
+		data["V5-4"] = 0
+		data["A6-1"] = 1
+		data["A6-2"] = 1
+		data["A6-3"] = 0
+		data["A6-4"] = 0
+
+#Left-Green
+	elif nr == 6:
 		data["A4-1"] = 0
 		data["A4-2"] = 0
 		data["A4-3"] = 1
@@ -330,129 +305,19 @@ def updateLightL(nr):
 		data["A5-4"] = 0
 		data["F5-1"] = 1
 		data["F5-2"] = 1
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 0
-		data["V5-4"] = 0
-		data["A6-1"] = 0
-		data["A6-2"] = 0
-		data["A6-3"] = 1
-		data["A6-4"] = 1
-
-#Left-Red
-	elif nr == 4:
-		data["A4-1"] = 0
-		data["A4-2"] = 0
-		data["A4-3"] = 0
-		data["A4-4"] = 0
-		data["B4-1"] = 0
-		data["F4-1"] = 0
-		data["F4-2"] = 0
-		data["V4-1"] = 0
-		data["V4-2"] = 0
-		data["V4-3"] = 0
-		data["V4-4"] = 0
-		data["A5-1"] = 0
-		data["A5-2"] = 0
-		data["A5-3"] = 0
-		data["A5-4"] = 0
-		data["F5-1"] = 0
-		data["F5-2"] = 0
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 1
-		data["V5-4"] = 1
-		data["A6-1"] = 1
-		data["A6-2"] = 1
-		data["A6-3"] = 1
-		data["A6-4"] = 1
-
-#Left-Green
-	elif nr == 6:
-		data["A4-1"] = 0
-		data["A4-2"] = 0
-		data["A4-3"] = 0
-		data["A4-4"] = 0
-		data["B4-1"] = 0
-		data["F4-1"] = 0
-		data["F4-2"] = 0
-		data["V4-1"] = 0
-		data["V4-2"] = 0
-		data["V4-3"] = 0
-		data["V4-4"] = 0
-		data["A5-1"] = 1
-		data["A5-2"] = 1
-		data["A5-3"] = 1
-		data["A5-4"] = 1
-		data["F5-1"] = 0
-		data["F5-2"] = 0
 		data["V5-1"] = 1
 		data["V5-2"] = 1
-		data["V5-3"] = 0
-		data["V5-4"] = 0
+		data["V5-3"] = 1
+		data["V5-4"] = 1
 		data["A6-1"] = 0
 		data["A6-2"] = 0
-		data["A6-3"] = 0
-		data["A6-4"] = 0
+		data["A6-3"] = 1
+		data["A6-4"] = 1
 
 #Left-Blue
 	elif nr == 8:
 		data["A4-1"] = 0
 		data["A4-2"] = 0
-		data["A4-3"] = 0
-		data["A4-4"] = 0
-		data["B4-1"] = 0
-		data["F4-1"] = 1
-		data["F4-2"] = 1
-		data["V4-1"] = 0
-		data["V4-2"] = 0
-		data["V4-3"] = 0
-		data["V4-4"] = 0
-		data["A5-1"] = 1
-		data["A5-2"] = 1
-		data["A5-3"] = 0
-		data["A5-4"] = 0
-		data["F5-1"] = 0
-		data["F5-2"] = 0
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 0
-		data["V5-4"] = 0
-		data["A6-1"] = 1
-		data["A6-2"] = 1
-		data["A6-3"] = 0
-		data["A6-4"] = 0
-		
-	elif nr == 10:
-		data["A4-1"] = 0
-		data["A4-2"] = 0
-		data["A4-3"] = 0
-		data["A4-4"] = 0
-		data["B4-1"] = 0
-		data["F4-1"] = 0
-		data["F4-2"] = 0
-		data["V4-1"] = 0
-		data["V4-2"] = 0
-		data["V4-3"] = 1
-		data["V4-4"] = 1
-		data["A5-1"] = 0
-		data["A5-2"] = 0
-		data["A5-3"] = 0
-		data["A5-4"] = 0
-		data["F5-1"] = 0
-		data["F5-2"] = 0
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 0
-		data["V5-4"] = 0
-		data["A6-1"] = 1
-		data["A6-2"] = 1
-		data["A6-3"] = 1
-		data["A6-4"] = 1
-		
-	elif nr == 12:
-		data["A4-1"] = 1
-		data["A4-2"] = 1
 		data["A4-3"] = 0
 		data["A4-4"] = 0
 		data["B4-1"] = 1
@@ -464,45 +329,18 @@ def updateLightL(nr):
 		data["V4-4"] = 0
 		data["A5-1"] = 0
 		data["A5-2"] = 0
-		data["A5-3"] = 1
-		data["A5-4"] = 1
-		data["F5-1"] = 0
-		data["F5-2"] = 0
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 0
-		data["V5-4"] = 0
-		data["A6-1"] = 0
-		data["A6-2"] = 0
-		data["A6-3"] = 0
-		data["A6-4"] = 0
-		
-	elif nr == 14:
-		data["A4-1"] = 1
-		data["A4-2"] = 1
-		data["A4-3"] = 1
-		data["A4-4"] = 1
-		data["B4-1"] = 0
-		data["F4-1"] = 0
-		data["F4-2"] = 0
-		data["V4-1"] = 1
-		data["V4-2"] = 1
-		data["V4-3"] = 0
-		data["V4-4"] = 0
-		data["A5-1"] = 0
-		data["A5-2"] = 0
 		data["A5-3"] = 0
 		data["A5-4"] = 0
-		data["F5-1"] = 0
-		data["F5-2"] = 0
-		data["V5-1"] = 0
-		data["V5-2"] = 0
-		data["V5-3"] = 0
-		data["V5-4"] = 0
+		data["F5-1"] = 1
+		data["F5-2"] = 1
+		data["V5-1"] = 1
+		data["V5-2"] = 1
+		data["V5-3"] = 1
+		data["V5-4"] = 1
 		data["A6-1"] = 0
 		data["A6-2"] = 0
-		data["A6-3"] = 0
-		data["A6-4"] = 0
+		data["A6-3"] = 1
+		data["A6-4"] = 1
 
 
 def getTime():
@@ -576,43 +414,31 @@ def SmartLights():
 	listData = set(listData)
 
 	#Sets of traffic lights
-	right1 = ['A1-1','A1-2','A3-1','A3-2','F2-1','F2-2']
-	right2 = ['A3-1','A3-2','A3-3','A3-4','V2-1','V2-2']
-	right3 = ['A2-1','A2-2','A2-3','A2-4','V2-3','V2-4']
-	right4 = ['A2-3','A2-4','A3-3','A3-4','F1-1','F1-2']
-	right5 = ['A3-1','A3-2','A3-3','A3-4','V1-1','V1-2']
-	right6 = ['B1-1','B1-2','A2-1','A2-2']
-	right7 = ['A1-1','A1-2','A1-3','V1-3','V1-4']
+	right1 = ['A1-1','A1-2','A1-3','A2-1','A2-2']
+	right2 = ['F1-1','F1-2','V1-1','V1-2','V1-3','V1-4','A2-3','A2-4','A3-3','A3-4']
+	right3 = ['A1-1','A1-2','F1-1','F1-2','V1-1','V1-2','V1-3','V1-4','A3-1','A3-2']
+	right4 = ['B1-1','B1-2']
 	
-	left1 = ['A4-3','A4-4','A6-3','A6-4','F5-1','F5-2']
-	left2 = ['A6-1','A6-2','A6-3','A6-4','V5-3','V5-4']
-	left3 = ['A5-1','A5-2','A5-3','A5-4','V5-1','V5-2']
-	left4 = ['A5-1','A5-2','A6-1','A6-2','F4-1','F4-2']
-	left5 = ['A6-1','A6-2','A6-3','A6-4','V4-3','V4-4']
-	left6 = ['A4-1','A4-2','B4-1','A5-3','A5-4']
-	left7 = ['A4-1','A4-2','A4-3','A4-4','V4-1','V4-2']
+	left1 = ['A4-1','A4-2','A4-3','A4-4','A5-3','A4-4']
+	left2 = ['F4-1','F4-2','V4-1','V4-2','V4-3','V4-4','A5-1','A5-2','A6-1','A6-2']
+	left3 = ['A4-3','A4-4','F5-1','F5-2','V5-1','V5-2','V5-3','V5-4','A6-3','A6-4']
+	left4 = ['B4-1','F5-1','F5-2','V5-1','V5-2','V5-3','V5-4','A6-3','A6-4']
 
 
 	#Count waiting traffic for each set
 	rSet1 = (len(listData.intersection(right1))) + rSetPrio[0]
 	rSet2 = (len(listData.intersection(right2))) + rSetPrio[1]
 	rSet3 = (len(listData.intersection(right3))) + rSetPrio[2]
-	rSet4 = (len(listData.intersection(right4))) + rSetPrio[3]
-	rSet5 = (len(listData.intersection(right5))) + rSetPrio[4]
-	rSet6 = (len(listData.intersection(right6))) + rSetPrio[5] + 3 #bus prio
-	rSet7 = (len(listData.intersection(right7))) + rSetPrio[6]
+	rSet4 = (len(listData.intersection(right4))) + rSetPrio[3] * 5
 	
 	lSet1 = (len(listData.intersection(left1))) + lSetPrio[0]
 	lSet2 = (len(listData.intersection(left2))) + lSetPrio[1]
 	lSet3 = (len(listData.intersection(left3))) + lSetPrio[2]
 	lSet4 = (len(listData.intersection(left4))) + lSetPrio[3]
-	lSet5 = (len(listData.intersection(left5))) + lSetPrio[4]
-	lSet6 = (len(listData.intersection(left6))) + lSetPrio[5] + 2 #bus prio
-	lSet7 = (len(listData.intersection(left7))) + lSetPrio[6]
 	
 	#Compare sets and return the one with the most waiting traffic
-	CompareRight = {2: rSet1, 4: rSet2, 6: rSet3, 8: rSet4, 10: rSet5, 12: rSet6, 14: rSet7}
-	CompareLeft = {2: lSet1, 4: lSet2, 6: lSet3, 8: lSet4, 10: lSet5, 12: lSet6, 14: lSet7}
+	CompareRight = {2: rSet1, 4: rSet2, 6: rSet3, 8: rSet4}
+	CompareLeft = {2: lSet1, 4: lSet2, 6: lSet3, 8: lSet4}
 	
 	rs = max(CompareRight, key=CompareRight.get)
 	ls = max(CompareLeft, key=CompareLeft.get)
@@ -620,7 +446,7 @@ def SmartLights():
 	print("prio r: ", str(rSetPrio))
 	print("prio l: ", str(lSetPrio))
 	
-	for x in range(0,7):
+	for x in range(0,4):
 		if not rs / 2 - 1 == x:
 			updatePrio('r', x, 1)
 		else:

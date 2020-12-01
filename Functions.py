@@ -533,9 +533,12 @@ def isSmart(bool):
 def receiving(c):
 	while True:
 		data = ''
-		while len(data) < 455:
-			data += c.recv(5).decode("utf-8")
-
+		data = c.recv(1024).decode("utf-8")
+		
+		length = int(data[:3])
+		data = data[4:]
+		data = data[:length]
+		
 		if not data:
 			isSmart(False)
 		else:
@@ -548,13 +551,13 @@ def getRecvData():
 def updatePrio(list, pos, val):
 	if list == 'r':
 		if val == 1:
-			rSetPrio[pos] =+ val
+			rSetPrio[pos] = rSetPrio[pos] + val
 		else:
 			rSetPrio[pos] = val
 
 	else:
 		if val == 1:
-			lSetPrio[pos] =+ val
+			lSetPrio[pos] = lSetPrio[pos] + val
 		else:
 			lSetPrio[pos] = val
 
@@ -565,7 +568,6 @@ def updateRecvData(data):
 	
 def SmartLights():
 	data = getRecvData()
-	data = data[4:]
 	data = json.loads(data)
 	listData = []
 	for light, state in data.items():
@@ -592,21 +594,21 @@ def SmartLights():
 
 
 	#Count waiting traffic for each set
-	rSet1 = (len(listData.intersection(right1)))
-	rSet2 = (len(listData.intersection(right2)))
-	rSet3 = (len(listData.intersection(right3)))
-	rSet4 = (len(listData.intersection(right4)))
-	rSet5 = (len(listData.intersection(right5)))
-	rSet6 = (len(listData.intersection(right6))) + 3 #bus prio
-	rSet7 = (len(listData.intersection(right7)))
+	rSet1 = (len(listData.intersection(right1))) + rSetPrio[0]
+	rSet2 = (len(listData.intersection(right2))) + rSetPrio[1]
+	rSet3 = (len(listData.intersection(right3))) + rSetPrio[2]
+	rSet4 = (len(listData.intersection(right4))) + rSetPrio[3]
+	rSet5 = (len(listData.intersection(right5))) + rSetPrio[4]
+	rSet6 = (len(listData.intersection(right6))) + rSetPrio[5] + 3 #bus prio
+	rSet7 = (len(listData.intersection(right7))) + rSetPrio[6]
 	
-	lSet1 = (len(listData.intersection(left1)))
-	lSet2 = (len(listData.intersection(left2)))
-	lSet3 = (len(listData.intersection(left3))) + 1
-	lSet4 = (len(listData.intersection(left4)))
-	lSet5 = (len(listData.intersection(left5)))
-	lSet6 = (len(listData.intersection(left6))) + 3 #bus prio
-	lSet7 = (len(listData.intersection(left7)))
+	lSet1 = (len(listData.intersection(left1))) + lSetPrio[0]
+	lSet2 = (len(listData.intersection(left2))) + lSetPrio[1]
+	lSet3 = (len(listData.intersection(left3))) + lSetPrio[2]
+	lSet4 = (len(listData.intersection(left4))) + lSetPrio[3]
+	lSet5 = (len(listData.intersection(left5))) + lSetPrio[4]
+	lSet6 = (len(listData.intersection(left6))) + lSetPrio[5] + 2 #bus prio
+	lSet7 = (len(listData.intersection(left7))) + lSetPrio[6]
 	
 	#Compare sets and return the one with the most waiting traffic
 	CompareRight = {2: rSet1, 4: rSet2, 6: rSet3, 8: rSet4, 10: rSet5, 12: rSet6, 14: rSet7}
@@ -614,6 +616,9 @@ def SmartLights():
 	
 	rs = max(CompareRight, key=CompareRight.get)
 	ls = max(CompareLeft, key=CompareLeft.get)
+	
+	print("prio r: ", str(rSetPrio))
+	print("prio l: ", str(lSetPrio))
 	
 	for x in range(0,7):
 		if not rs / 2 - 1 == x:
@@ -626,7 +631,6 @@ def SmartLights():
 			updatePrio('l', x, 1)
 		else:
 			updatePrio('l', x, 0)
-
 
 	setStage(
 		getStage('r') % 2 == 1 and rs or 1,

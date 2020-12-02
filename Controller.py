@@ -2,7 +2,6 @@ import socket
 import threading
 
 from Functions import *
-
 host = "127.0.0.1"
 port = 54000
 

@@ -16,7 +16,7 @@ while True:
 	recv_thread = threading.Thread(target=receiving, args=(client,))
 	recv_thread.start()
 	
-	while True:		
+	while True:
 		if not getSmart():
 			if getStage('r') < 14:
 				s = getStage('r') + 1

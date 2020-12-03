@@ -4,6 +4,8 @@ import time
 smart = False
 rStage = 0
 lStage = 0
+rPrio = [0,0,0,0,0,0,0]
+lPrio = [0,0,0,0,0,0,0]
 recvData = ''
 data = {
 	"A1-1": 0,
@@ -554,7 +556,20 @@ def getRecvData():
 def updateRecvData(data):
 	global recvData
 	recvData = data
-	
+
+def updatePrio(side ,stage, reset):
+	if side == 'r': 
+		if reset:
+			rPrio[int(stage / 2 - 1)] += 1
+		else:
+			rPrio[int(stage / 2 - 1)] = 0
+	else:
+		if reset:
+			lPrio[int(stage / 2 - 1)] += 1
+		else:	
+			lPrio[int(stage / 2 - 1)] = 0
+
+
 def SmartLights():
 	data = getRecvData()
 	data = json.loads(data)
@@ -586,8 +601,12 @@ def SmartLights():
 	rSet3 = (len(listData.intersection(right3)))
 	rSet4 = (len(listData.intersection(right4)))
 	rSet5 = (len(listData.intersection(right5)))
-	rSet6 = (len(listData.intersection(right6))) + 3
-	rSet7 = (len(listData.intersection(right7))) + 1
+	rSet6 = (len(listData.intersection(right6)))
+	rSet7 = (len(listData.intersection(right7)))
+
+	#extra prio for busses
+	if rSet6 != 0: rSet6 = rSet6 + 3
+	if rSet7 != 0: rSet7 = rSet7 + 1
 	
 	lSet1 = (len(listData.intersection(left1)))
 	lSet2 = (len(listData.intersection(left2)))
@@ -597,17 +616,31 @@ def SmartLights():
 	lSet6 = (len(listData.intersection(left6)))
 	lSet7 = (len(listData.intersection(left7)))
 
-	rCompare = [(2,rSet1,3),(4,rSet2,4),(6,rSet3,6),(8,rSet4,2),(10,rSet5,1),(12,rSet6,7),(14,rSet7,5)]
-	lCompare = [(2,lSet1,1),(4,lSet2,4),(6,lSet3,6),(8,lSet4,2),(10,lSet5,3),(12,lSet6,7),(14,lSet7,5)]
+	#order of values: stage, number of cars, prio.	
+	rCompare = [(2,rSet1,1),(4,rSet2,rPrio[1]),(6,rSet3,rPrio[2]),(8,rSet4,1),(10,rSet5,1),(12,rSet6,rPrio[5]),(14,rSet7,rPrio[6])]
+	lCompare = [(2,lSet1,1),(4,lSet2,lPrio[1]),(6,lSet3,lPrio[2]),(8,lSet4,1),(10,lSet5,1),(12,lSet6,lPrio[5]),(14,lSet7,lPrio[6])]
 
+	#order first based on highest number of cars, then highest prio
 	rs = sorted(rCompare, key=lambda x: (x[1],x[2]), reverse=True)
 	ls = sorted(lCompare, key=lambda x: (x[1],x[2]), reverse=True)
+	
 	print("sort rs:", str(rs))
 	print("sort ls:", str(ls))
 
 	rs = rs[0][0]
-	ls = ls[0][0]	
+	ls = ls[0][0]
 	
+	#dynamic prio for entrance routes
+	if getStage('r') == 1:
+		for r in rCompare:
+			updatePrio('r' ,r[0], r[0] != rs)
+	
+	if getStage('l') == 1:
+		for l in lCompare:
+			updatePrio('l', l[0], l[0] != ls)
+	
+	
+	#set next stage based on current stage. if current is even, next stage is a clearing stage
 	setStage(
 		getStage('r') % 2 == 1 and rs or 1,
 		getStage('l') % 2 == 1 and ls or 1

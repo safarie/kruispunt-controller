@@ -4,8 +4,8 @@ import time
 smart = False
 rStage = 0
 lStage = 0
-rPrio = [0,0,0,0,0,0,0]
-lPrio = [0,0,0,0,0,0,0]
+rPrio = [0,0,0,0,0,0,0,0]
+lPrio = [0,0,0,0,0,0,0,0]
 recvData = ''
 data = {
 	"A1-1": 0,
@@ -284,6 +284,34 @@ def updateLightR(nr):
 		data["A3-2"] = 0
 		data["A3-3"] = 0
 		data["A3-4"] = 0
+		
+	#Right:8
+	elif nr == 16:	
+		data["A1-1"] = 0
+		data["A1-2"] = 0
+		data["A1-3"] = 0
+		data["B1-1"] = 0
+		data["B1-2"] = 0
+		data["F1-1"] = 1
+		data["F1-2"] = 1
+		data["V1-1"] = 0
+		data["V1-2"] = 0
+		data["V1-3"] = 0
+		data["V1-4"] = 0
+		data["A2-1"] = 0
+		data["A2-2"] = 0
+		data["A2-3"] = 0
+		data["A2-4"] = 0
+		data["F2-1"] = 1
+		data["F2-2"] = 1
+		data["V2-1"] = 0
+		data["V2-2"] = 0
+		data["V2-3"] = 0
+		data["V2-4"] = 0
+		data["A3-1"] = 0
+		data["A3-2"] = 0
+		data["A3-3"] = 0
+		data["A3-4"] = 0
 
 def updateLightL(nr):
 	#Clearing
@@ -509,6 +537,34 @@ def updateLightL(nr):
 		data["A6-2"] = 0
 		data["A6-3"] = 0
 		data["A6-4"] = 0
+	
+	#left 8
+	if nr == 16:
+		data["A4-1"] = 0
+		data["A4-2"] = 0
+		data["A4-3"] = 0
+		data["A4-4"] = 0
+		data["B4-1"] = 0
+		data["F4-1"] = 1
+		data["F4-2"] = 1
+		data["V4-1"] = 0
+		data["V4-2"] = 0
+		data["V4-3"] = 0
+		data["V4-4"] = 0
+		data["A5-1"] = 0
+		data["A5-2"] = 0
+		data["A5-3"] = 0
+		data["A5-4"] = 0
+		data["F5-1"] = 1
+		data["F5-2"] = 1
+		data["V5-1"] = 0
+		data["V5-2"] = 0
+		data["V5-3"] = 0
+		data["V5-4"] = 0
+		data["A6-1"] = 0
+		data["A6-2"] = 0
+		data["A6-3"] = 0
+		data["A6-4"] = 0
 
 def getTime():
 	if getStage('r') % 2 == 1:
@@ -586,6 +642,7 @@ def SmartLights():
 	right5 = ['A3-3','A3-4','A1-1','A1-2']
 	right6 = ['B1-1','B1-2']
 	right7 = ['A1-1','A1-2','A1-3']
+	right8 = ['F1-1','F1-2','F2-1','F2-2']
 
 	left1 = ['A4-3','A4-4','A5-3','A5-4']
 	left2 = ['A6-1','A6-2','A6-3','A6-4']
@@ -594,6 +651,7 @@ def SmartLights():
 	left5 = ['A6-3','A6-4','A4-3','A4-4']
 	left6 = ['A4-2','B4-1','A5-3','A5-4'] 
 	left7 = ['A4-1','A4-2','A4-3','A4-4']
+	left8 = ['F4-1','F4-2','F5-1','F5-2']
 
 	#Count waiting traffic for each set
 	rSet1 = (len(listData.intersection(right1)))
@@ -603,6 +661,7 @@ def SmartLights():
 	rSet5 = (len(listData.intersection(right5)))
 	rSet6 = (len(listData.intersection(right6)))
 	rSet7 = (len(listData.intersection(right7)))
+	rSet8 = (len(listData.intersection(right8))) + 1
 
 	#extra prio for busses
 	if rSet6 != 0: rSet6 = rSet6 + 3
@@ -615,10 +674,11 @@ def SmartLights():
 	lSet5 = (len(listData.intersection(left5)))
 	lSet6 = (len(listData.intersection(left6)))
 	lSet7 = (len(listData.intersection(left7)))
+	lSet8 = (len(listData.intersection(left8))) + 1
 
 	#order of values: stage, number of cars, prio.	
-	rCompare = [(2,rSet1,1),(4,rSet2,rPrio[1]),(6,rSet3,rPrio[2]),(8,rSet4,1),(10,rSet5,1),(12,rSet6,rPrio[5]),(14,rSet7,rPrio[6])]
-	lCompare = [(2,lSet1,1),(4,lSet2,lPrio[1]),(6,lSet3,lPrio[2]),(8,lSet4,1),(10,lSet5,1),(12,lSet6,lPrio[5]),(14,lSet7,lPrio[6])]
+	rCompare = [(2,rSet1,1),(4,rSet2,rPrio[1]),(6,rSet3,rPrio[2]),(8,rSet4,1),(10,rSet5,1),(12,rSet6,rPrio[5]),(14,rSet7,rPrio[6]),(16,rSet8,rPrio[7])]
+	lCompare = [(2,lSet1,1),(4,lSet2,lPrio[1]),(6,lSet3,lPrio[2]),(8,lSet4,1),(10,lSet5,1),(12,lSet6,lPrio[5]),(14,lSet7,lPrio[6]),(16,lSet8,lPrio[7])]
 
 	#order first based on highest number of cars, then highest prio
 	rs = sorted(rCompare, key=lambda x: (x[1],x[2]), reverse=True)

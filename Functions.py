@@ -661,7 +661,7 @@ def SmartLights():
 	rSet5 = (len(listData.intersection(right5)))
 	rSet6 = (len(listData.intersection(right6)))
 	rSet7 = (len(listData.intersection(right7)))
-	rSet8 = (len(listData.intersection(right8))) + 1
+	rSet8 = (len(listData.intersection(right8)))
 
 	#extra prio for busses
 	if rSet6 != 0: rSet6 = rSet6 + 3
@@ -674,7 +674,7 @@ def SmartLights():
 	lSet5 = (len(listData.intersection(left5)))
 	lSet6 = (len(listData.intersection(left6)))
 	lSet7 = (len(listData.intersection(left7)))
-	lSet8 = (len(listData.intersection(left8))) + 1
+	lSet8 = (len(listData.intersection(left8)))
 
 	#order of values: stage, number of cars, prio.	
 	rCompare = [(2,rSet1,1),(4,rSet2,rPrio[1]),(6,rSet3,rPrio[2]),(8,rSet4,1),(10,rSet5,1),(12,rSet6,rPrio[5]),(14,rSet7,rPrio[6]),(16,rSet8,rPrio[7])]
